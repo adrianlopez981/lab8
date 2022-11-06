@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.webapphr.model.beans.Heroe" %><%--
   Created by IntelliJ IDEA.
   User: Anais
   Date: 5/11/2022
@@ -95,11 +95,11 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="MenuPrincipal.html" class="nav-link px-2"><b style="color:#CDEFB4">Menú Principal</b></a></li>
-        <li><a href="MenuHeroes.html" class="nav-link px-2 text-white">Menú Héroes</a></li>
-        <li><a href="MenuEnemigos.html" class="nav-link px-2 text-white">Menú Enemigos</a></li>
-        <li><a href="MenuHechizos.html" class="nav-link px-2 text-white">Menú Hechizos</a></li>
-        <li><a href="CatalogoObjetos.html" class="nav-link px-2 text-white">Catálogo Objetos</a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuPrincipal" class="nav-link px-2"><b style="color:#CDEFB4">Menú Principal</b></a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuHeroes" class="nav-link px-2 text-white">Menú Héroes</a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuEnemigos" class="nav-link px-2 text-white">Menú Enemigos</a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuHechizos" class="nav-link px-2 text-white">Menú Hechizos</a></li>
+        <li><a href="<%=request.getContextPath()%>/CatalogoObjetos" class="nav-link px-2 text-white">Catálogo Objetos</a></li>
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -110,7 +110,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><a href="Inicio.html" style="color:#ECE987"><b>SALIR ></b></a></td>
+            <td><a href="<%=request.getContextPath()%>/Inicio" style="color:#ECE987"><b>SALIR ></b></a></td>
         </table>
     </div>
   </div>
@@ -144,6 +144,7 @@
             </tr>
             </thead>
             <tbody class="table-group-divider">
+            <%  %>
             <tr>
               <th scope="row">1</th>
               <td>Mark</td>
@@ -172,13 +173,13 @@
                           ¿Estás seguro de eliminar?
                         </div>
                         <div class="modal-footer">
-                          <a href="MenuHeroes.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="MenuHeroes.html"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-primary">Eliminar</button></a>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <a href="Ver.html" class="btn btn-success .5;">Ver</a>
+                  <a href="<%=request.getContextPath()%>/Ver" class="btn btn-success .5;">Ver</a>
                 </div>
 
               </td>
@@ -194,7 +195,7 @@
               <td>1000</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                  <a href="Editar.html" class="btn btn-success" >Editar</a>
+                  <a href="<%=request.getContextPath()%>/Editar" class="btn btn-success" >Editar</a>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Eliminar
                   </button>
@@ -211,13 +212,13 @@
                           ¿Estás seguro de eliminar?
                         </div>
                         <div class="modal-footer">
-                          <a href="MenuHeroes.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="MenuHeroes.html"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-primary">Eliminar</button></a>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <a href="Ver.html" class="btn btn-success .5;">Ver</a>
+                  <a href="<%=request.getContextPath()%>/Ver" class="btn btn-success .5;">Ver</a>
                 </div>
 
               </td>
@@ -326,7 +327,7 @@
 
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <a href="AnadirHeroe.html"><button type="button" class="btn btn-danger">Añadir >></button></a>
+  <a href="<%=request.getContextPath()%>/AnadirHeroe"><button type="button" class="btn btn-danger">Añadir >></button></a>
 </div>
 
 
