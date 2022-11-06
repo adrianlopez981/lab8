@@ -95,11 +95,11 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="MenuPrincipal.html" class="nav-link px-2"><b style="color:#CDEFB4">Menú Principal</b></a></li>
-        <li><a href="MenuHeroes.html" class="nav-link px-2 text-white">Menú Héroes</a></li>
-        <li><a href="MenuEnemigos.html" class="nav-link px-2 text-white">Menú Enemigos</a></li>
-        <li><a href="MenuHechizos.html" class="nav-link px-2 text-white">Menú Hechizos</a></li>
-        <li><a href="CatalogoObjetos.html" class="nav-link px-2 text-white">Catálogo Objetos</a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuPrincipal" class="nav-link px-2"><b style="color:#CDEFB4">Menú Principal</b></a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuHeroes" class="nav-link px-2 text-white">Menú Héroes</a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuEnemigos" class="nav-link px-2 text-white">Menú Enemigos</a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuHechizos" class="nav-link px-2 text-white">Menú Hechizos</a></li>
+        <li><a href="<%=request.getContextPath()%>/CatalogoObjetos" class="nav-link px-2 text-white">Catálogo Objetos</a></li>
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -110,7 +110,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><a href="Inicio.html" style="color:#ECE987"><b>SALIR ></b></a></td>
+            <td><a href="<%=request.getContextPath()%>/Inicio" style="color:#ECE987"><b>SALIR ></b></a></td>
         </table>
     </div>
   </div>
@@ -138,7 +138,7 @@
               <th scope="col">Peso</th>
               <th scope="col">Uso(s/n)</th>
 
-              <th scope="col"><a href="AnadirCatalogo.html" class="btn btn-danger" >Añadir</a></th>
+              <th scope="col"><a href="<%=request.getContextPath()%>/AnadirCatalogo" class="btn btn-danger" >Añadir</a></th>
 
             </tr>
             </thead>
@@ -154,7 +154,7 @@
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
 
 
-                  <a href="EditarCatalogo.html" class="btn btn-success" >Editar</a>
+                  <a href="<%=request.getContextPath()%>/EditarCatalogo" class="btn btn-success" >Editar</a>
 
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Eliminar
@@ -172,8 +172,8 @@
                           ¿Estás seguro de eliminar?
                         </div>
                         <div class="modal-footer">
-                          <a href="CatalogoObjetos.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="CatalogoObjetos.html"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                          <a href="<%=request.getContextPath()%>/CatalogoObjetos"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                          <a href="<%=request.getContextPath()%>/CatalogoObjetos"><button type="button" class="btn btn-primary">Eliminar</button></a>
                         </div>
                       </div>
                     </div>
@@ -192,7 +192,7 @@
               <td>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
 
-                  <a href="EditarCatalogo.html" class="btn btn-success" >Editar</a>
+                  <a href="<%=request.getContextPath()%>/EditarCatalogo" class="btn btn-success" >Editar</a>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Eliminar
                   </button>
@@ -209,8 +209,8 @@
                           ¿Estás seguro de eliminar?
                         </div>
                         <div class="modal-footer">
-                          <a href="CatalogoObjetos.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="CatalogoObjetos.html"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                          <a href="<%=request.getContextPath()%>/CatalogoObjetos"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                          <a href="<%=request.getContextPath()%>/CatalogoObjetos"><button type="button" class="btn btn-primary">Eliminar</button></a>
                         </div>
                       </div>
                     </div>
@@ -227,7 +227,7 @@
               <td>8</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                  <a href="EditarCatalogo.html" class="btn btn-success" >Editar</a>
+                  <a href="<%=request.getContextPath()%>/EditarCatalogo" class="btn btn-success" >Editar</a>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Eliminar
                   </button>
@@ -244,8 +244,8 @@
                           ¿Estás seguro de eliminar?
                         </div>
                         <div class="modal-footer">
-                          <a href="CatalogoObjetos.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="CatalogoObjetos.html"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                          <a href="<%=request.getContextPath()%>/CatalogoObjetos"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                          <a href="<%=request.getContextPath()%>/CatalogoObjetos"><button type="button" class="btn btn-primary">Eliminar</button></a>
                         </div>
                       </div>
                     </div>

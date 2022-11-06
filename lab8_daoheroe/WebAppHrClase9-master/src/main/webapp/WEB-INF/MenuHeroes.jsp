@@ -234,7 +234,7 @@
               <td>1000</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                  <a href="Editar.html" class="btn btn-success" >Editar</a>
+                  <a href="<%=request.getContextPath()%>/Editar" class="btn btn-success" >Editar</a>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Eliminar
                   </button>
@@ -251,13 +251,13 @@
                           ¿Estás seguro de eliminar?
                         </div>
                         <div class="modal-footer">
-                          <a href="MenuHeroes.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="MenuHeroes.html"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-primary">Eliminar</button></a>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <a href="Ver.html" class="btn btn-success .5;">Ver</a>
+                  <a href="<%=request.getContextPath()%>/Ver" class="btn btn-success .5;">Ver</a>
                 </div>
 
               </td>
@@ -273,7 +273,7 @@
               <td>1000</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                  <a href="Editar.html" class="btn btn-success" >Editar</a>
+                  <a href="<%=request.getContextPath()%>/Editar" class="btn btn-success" >Editar</a>
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Eliminar
                   </button>
@@ -290,13 +290,13 @@
                           ¿Estás seguro de eliminar?
                         </div>
                         <div class="modal-footer">
-                          <a href="MenuHeroes.html"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="MenuHeroes.html"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-primary">Eliminar</button></a>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <a href="Ver.html" class="btn btn-success .5;">Ver</a>
+                  <a href="<%=request.getContextPath()%>/Ver" class="btn btn-success .5;">Ver</a>
                 </div>
 
               </td>

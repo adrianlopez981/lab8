@@ -95,11 +95,11 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="MenuPrincipal.html" class="nav-link px-2"><b style="color:#CDEFB4">Menú Principal</b></a></li>
-        <li><a href="MenuHeroes.html" class="nav-link px-2 text-white">Menú Héroes</a></li>
-        <li><a href="MenuEnemigos.html" class="nav-link px-2 text-white">Menú Enemigos</a></li>
-        <li><a href="MenuHechizos.html" class="nav-link px-2 text-white">Menú Hechizos</a></li>
-        <li><a href="CatalogoObjetos.html" class="nav-link px-2 text-white">Catálogo Objetos</a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuPrincipal" class="nav-link px-2"><b style="color:#CDEFB4">Menú Principal</b></a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuHeroes" class="nav-link px-2 text-white">Menú Héroes</a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuEnemigos" class="nav-link px-2 text-white">Menú Enemigos</a></li>
+        <li><a href="<%=request.getContextPath()%>/MenuHechizos" class="nav-link px-2 text-white">Menú Hechizos</a></li>
+        <li><a href="<%=request.getContextPath()%>/CatalogoObjetos" class="nav-link px-2 text-white">Catálogo Objetos</a></li>
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -110,7 +110,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><a href="Inicio.html" style="color:#ECE987"><b>SALIR ></b></a></td>
+            <td><a href="<%=request.getContextPath()%>/Inicio" style="color:#ECE987"><b>SALIR ></b></a></td>
         </table>
     </div>
   </div>
@@ -123,8 +123,8 @@
       <h6 class="card-subtitle mb-2 text-muted">Catálogo Objetos </h6>
       <p class="card-text">Antes de continuar, responda la siguiente pregunta, ¿el objeto está siendo usado por algún héroe?</p>
       <div class="btn-group" role="group" aria-label="Basic outlined example">
-        <a href="EditarCatalogoSi.html" class="card-link"><button type="button" class="btn btn-outline-success">Sí</button></a>
-        <a href="EditarCatalogoNo.html" class="card-link"><button type="button" class="btn btn-outline-success">No</button></a>
+        <a href="<%=request.getContextPath()%>/EditarCatalogoSi" class="card-link"><button type="button" class="btn btn-outline-success">Sí</button></a>
+        <a href="<%=request.getContextPath()%>/EditarCatalogoNo" class="card-link"><button type="button" class="btn btn-outline-success">No</button></a>
       </div>
     </div>
   </div>

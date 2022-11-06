@@ -102,7 +102,7 @@
             <br>
 
             <div id="separar">
-                <a href="MenuPrincipal.html"><button class="boton4" type="button" class="btn btn-primary btn-lg">
+                <a href="<%=request.getContextPath()%>/MenuPrincipal"><button class="boton4" type="button" class="btn btn-primary btn-lg">
                     <h5 style="font-weight: 200;font-style: normal; color:#FFFFFF" class="custom-font" data-lorem="1s">. Ingresar .
                     </h5>
                 </button></a>
