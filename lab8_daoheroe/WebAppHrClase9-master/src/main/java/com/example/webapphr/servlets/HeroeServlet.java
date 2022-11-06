@@ -118,11 +118,9 @@ public class HeroeServlet extends HttpServlet {
 
                     response.sendRedirect(request.getContextPath() + "/HeroeServlet");
                 } catch (NumberFormatException e) {
-                    response.sendRedirect(request.getContextPath() + "/HeroeServlet?action=editar&id=" + idHeroe1);
+                    response.sendRedirect(request.getContextPath() + "/HeroeServlet?action=editar&id=" );
                 }
                 break;
-
-
         }
     }
 }

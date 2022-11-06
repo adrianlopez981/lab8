@@ -1,13 +1,13 @@
 package com.example.webapphr.model.daos;
 
-import com.example.webapphr.model.beans.Enemigo;
+import com.example.webapphr.model.beans.Heroe;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DaoEnemigo {
+public class DaoCatalogoObjetos {
 
-        public ArrayList<Enemigo> lista() {
+        public ArrayList<Heroe> lista() {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -15,10 +15,7 @@ public class DaoEnemigo {
             }
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
-            ArrayList<Enemigo> lista = new ArrayList<>();
-
-            /*EDITAR*/
-
+            ArrayList<Heroe> lista = new ArrayList<>();
             String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
                     "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
                     "and g.idGenero = h.Genero_idGenero\n" +
@@ -30,16 +27,17 @@ public class DaoEnemigo {
                  ResultSet rs = stmt.executeQuery(sql);) {
 
                 while (rs.next()) {
-                    Enemigo enemigo = new Enemigo();
-                    enemigo.setEnemigoId(rs.getInt(1));
-                    enemigo.setNombreEnemigo(rs.getString(2));
-                    enemigo.setEdadEnemigo(rs.getInt(3));
-                    enemigo.setClase(rs.getString(4));
-                    enemigo.setAtaqueEnemigo(rs.getInt(5));
-                    enemigo.setExperienciaEnemigo(rs.getInt(6));
-                    enemigo.setObjeto(rs.getString(7));
-                    enemigo.setGenero(rs.getString(8));
-                    lista.add(enemigo);
+                    Heroe heroe = new Heroe();
+                    heroe.setHeroeId(rs.getInt(1));
+                    heroe.setNombre(rs.getString(2));
+                    heroe.setEdad(rs.getInt(3));
+                    heroe.setGenero(rs.getString(4));
+                    heroe.setClase(rs.getString(5));
+                    heroe.setNivelHeroeId(rs.getInt(6));
+                    heroe.setAtaqueHeroe(rs.getInt(7));
+                    heroe.setIdPareja(rs.getInt(8));
+                    heroe.setPuntosXPheroe(rs.getInt(9));
+                    lista.add(heroe);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -48,7 +46,7 @@ public class DaoEnemigo {
         }
 
 
-        public void borrar(String enemigoId) {
+        public void borrar(String HeroeId) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -56,12 +54,12 @@ public class DaoEnemigo {
             }
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
-            String sql = "DELETE FROM heroe WHERE idEnemigo = ?";
+            String sql = "DELETE FROM heroe WHERE idHeroe = ?";
 
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-                pstmt.setString(1, enemigoId);
+                pstmt.setString(1, HeroeId);
                 pstmt.executeUpdate();
 
             } catch (SQLException e) {
@@ -69,7 +67,7 @@ public class DaoEnemigo {
             }
         }
 
-        public Enemigo buscarPorId(String enemigoId) {
+        public Heroe buscarPorId(String heroeId) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -78,8 +76,8 @@ public class DaoEnemigo {
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
 
-            Enemigo enemigo = null;
-            /*EDITAR*/
+            Heroe heroe = null;
+
             String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
                     "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
                     "and g.idGenero = h.Genero_idGenero\n" +
@@ -90,30 +88,30 @@ public class DaoEnemigo {
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql);) {
 
-                pstmt.setString(1, enemigoId);
+                pstmt.setString(1, heroeId);
 
                 try (ResultSet rs = pstmt.executeQuery()) {
                     if (rs.next()) {
-                        enemigo = new Enemigo();
-                        enemigo.setEnemigoId(rs.getInt(1));
-                        enemigo.setNombreEnemigo(rs.getString(2));
-                        enemigo.setEdadEnemigo(rs.getInt(3));
-                        enemigo.setClase(rs.getString(4));
-                        enemigo.setAtaqueEnemigo(rs.getInt(5));
-                        enemigo.setExperienciaEnemigo(rs.getInt(6));
-                        enemigo.setObjeto(rs.getString(7));
-                        enemigo.setGenero(rs.getString(8));
-
+                        heroe = new Heroe();
+                        heroe.setHeroeId(rs.getInt(1));
+                        heroe.setNombre(rs.getString(2));
+                        heroe.setEdad(rs.getInt(3));
+                        heroe.setGenero(rs.getString(4));
+                        heroe.setClase(rs.getString(5));
+                        heroe.setNivelHeroeId(rs.getInt(6));
+                        heroe.setAtaqueHeroe(rs.getInt(7));
+                        heroe.setIdPareja(rs.getInt(8));
+                        heroe.setPuntosXPheroe(rs.getInt(9));
                     }
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            return enemigo;
+            return heroe;
 
         }
 
-        public static void guardar(Enemigo enemigo){
+        public static void guardar(Heroe heroe){
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -138,15 +136,13 @@ public class DaoEnemigo {
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-                pstmt.setString(1, enemigo.getNombreEnemigo());
-                pstmt.setInt(2, enemigo.getEdadEnemigo());
-                pstmt.setString(3, enemigo.getGenero());
-                pstmt.setString(4, enemigo.getClase());
-                pstmt.setInt(5, enemigo.getEdadEnemigo());
-                pstmt.setInt(6, enemigo.getExperienciaEnemigo());
-                pstmt.setString(7, enemigo.getObjeto());
-                pstmt.setString(8, enemigo.getGenero());
-
+                pstmt.setString(1, heroe.getNombre());
+                pstmt.setInt(2, heroe.getEdad());
+                pstmt.setInt(3, heroe.getIdGenero());
+                pstmt.setInt(4, heroe.getClaseHeroeId());
+                pstmt.setInt(5, heroe.getNivelHeroeId());
+                pstmt.setInt(6, heroe.getAtaqueHeroe());
+                pstmt.setInt(12, heroe.getIdPareja());
 
                 pstmt.executeUpdate();
 
@@ -154,8 +150,8 @@ public class DaoEnemigo {
                 throw new RuntimeException(e);
             }
         }
-        /*EDITAR*/
-        public void actualizar (String nombreEnemigo,int edadEnemigo, String genero, int claseIdHeroe, int nivelHeroe,
+
+        public void actualizar (String nombreHeroe,int edadHeroe, int generoIdHeroe, int claseIdHeroe, int nivelHeroe,
                                 int idHeroe, int Ataque, int idPareja){
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -172,14 +168,14 @@ public class DaoEnemigo {
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql)) {
                 /*colocar campo correcto para actualizar*/
-                pstmt.setString(1, nombreEnemigo);
-                pstmt.setString(2, genero);
-                pstmt.setInt(3, edadEnemigo);
+                pstmt.setString(1, nombreHeroe);
+                pstmt.setInt(2, edadHeroe);
+                pstmt.setInt(3, generoIdHeroe);
                 pstmt.setInt(4, claseIdHeroe);
                 pstmt.setInt(5, nivelHeroe);
                 pstmt.setInt(6, idHeroe);
                 pstmt.setInt(7, Ataque);
-                pstmt.setInt(8, idPareja);
+                pstmt.setInt(14, idPareja);
 
 
                 pstmt.executeUpdate();
@@ -188,4 +184,5 @@ public class DaoEnemigo {
                 throw new RuntimeException(e);
             }
         }
+
 }
