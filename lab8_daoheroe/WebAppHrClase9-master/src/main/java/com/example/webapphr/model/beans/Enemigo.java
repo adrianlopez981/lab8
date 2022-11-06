@@ -2,8 +2,8 @@ package com.example.webapphr.model.beans;
 
 public class Enemigo {
     private int enemigoId;
-    private String nombre;
-    private int edad;
+    private String nombreEnemigo;
+    private int edadEnemigo;
     private int idGenero;
     private int experienciaEnemigo;
     private String objeto;
@@ -21,20 +21,20 @@ public class Enemigo {
         this.enemigoId = enemigoId;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreEnemigo() {
+        return nombreEnemigo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreEnemigo(String nombreEnemigo) {
+        this.nombreEnemigo = nombreEnemigo;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getEdadEnemigo() {
+        return edadEnemigo;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setEdadEnemigo(int edadEnemigo) {
+        this.edadEnemigo = edadEnemigo;
     }
 
     public int getIdGenero() {
