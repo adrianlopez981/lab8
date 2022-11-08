@@ -102,7 +102,7 @@ public class DaoHeroe {
                     heroe.setNivelHeroeId(rs.getInt(6));
                     heroe.setAtaqueHeroe(rs.getInt(7));
                     heroe.setIdPareja(rs.getInt(8));
-                    heroe.setPuntosXPheroe(rs.getInt(9));
+                    heroe.setPuntosXPheroe(ExperienciaHeroe(heroe.getNivelHeroeId()));
                 }
             }
         } catch (SQLException e) {
@@ -162,7 +162,7 @@ public class DaoHeroe {
         /*cambiar los insert into por updates */
         String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
         String sql =
-                "UPDATE heroe SET nombreHeroe = ?, edadHeroe = ?, Genero_generoid = ?, ClaseHeroe_idClaseHeroe = ?,NivelHeroe_idNivelHeroe = ? WHERE idHeroe = ?;" +
+                "UPDATE heroe SET nombreHeroe = ?, edadHeroe = ?, Genero_generoid = ?, ClaseHeroe_idClaseHeroe = ?,NivelHeroe_idNivelHeroe = ?, Pareja_idPareja = ? WHERE idHeroe = ?;" +
                         "UPDATE e SET e.ataque = ?, e.defensa = ?, e.velocidad = ?, e.poderMagico = ?, e.espiritu = ?, e.suerte =? FROM estadistica e, estadisticaheroe_has_heroe ehh, heroe h WHERE ehh.heroe_idheroe = ? and e.idestadisticaHeroe = ehh.estadisticaHeroe_idestadisticaHeroe;" +
                         "UPDATE p, rp, h SET p.idPareja = ?, p.heroe_idheroe = p.idPareja, rp.Pareja_idPareja = p.idPareja, h.Pareja_idPareja = rp.Pareja_idPareja FROM pareja p, heroe h, relacionpareja rp WHERE h.idheroe = ?, h.idheroe = rp.heroe_idheroe;";
 
@@ -176,7 +176,7 @@ public class DaoHeroe {
             pstmt.setInt(5, nivelHeroe);
             pstmt.setInt(6, idHeroe);
             pstmt.setInt(7, Ataque);
-            pstmt.setInt(14, idPareja);
+            pstmt.setInt(8, idPareja);
 
 
             pstmt.executeUpdate();
