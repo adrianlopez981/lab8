@@ -1,13 +1,13 @@
 package com.example.webapphr.model.daos;
 
-import com.example.webapphr.model.beans.Heroe;
+import com.example.webapphr.model.beans.CatalogoObjetos;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class DaoCatalogoObjetos {
 
-        public ArrayList<Heroe> lista() {
+        public ArrayList<CatalogoObjetos> lista() {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -15,8 +15,9 @@ public class DaoCatalogoObjetos {
             }
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
-            ArrayList<Heroe> lista = new ArrayList<>();
-            String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
+            ArrayList<CatalogoObjetos> lista = new ArrayList<>();
+            //editar
+            String sql = "select h.idCatalogoObjeos, h.nombre, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
                     "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
                     "and g.idGenero = h.Genero_idGenero\n" +
                     "and eh.idEstadisticaHeroe = ehh.EstadisticaHeroe_idEstadisticaHeroe and eh.nombreEstadistica = \"ataque\"\n" +
@@ -27,17 +28,18 @@ public class DaoCatalogoObjetos {
                  ResultSet rs = stmt.executeQuery(sql);) {
 
                 while (rs.next()) {
-                    Heroe heroe = new Heroe();
-                    heroe.setHeroeId(rs.getInt(1));
-                    heroe.setNombre(rs.getString(2));
-                    heroe.setEdad(rs.getInt(3));
-                    heroe.setGenero(rs.getString(4));
-                    heroe.setClase(rs.getString(5));
-                    heroe.setNivelHeroeId(rs.getInt(6));
-                    heroe.setAtaqueHeroe(rs.getInt(7));
-                    heroe.setIdPareja(rs.getInt(8));
-                    heroe.setPuntosXPheroe(rs.getInt(9));
-                    lista.add(heroe);
+                    CatalogoObjetos catalogoObjetos = new CatalogoObjetos();
+                    catalogoObjetos.setIdCatalogoObjetos(rs.getInt(1));
+                    catalogoObjetos.setNombre(rs.getString(2));
+                    catalogoObjetos.setEfecto(rs.getFloat(3));
+                    catalogoObjetos.setPeso(rs.getFloat(4));
+                    catalogoObjetos.setUsoHeroe(rs.getString(5));
+
+                    /*catalogoObjetos.setNivelHeroeId(rs.getInt(6));
+                    catalogoObjetos.setAtaqueHeroe(rs.getInt(7));
+                    catalogoObjetos.setIdPareja(rs.getInt(8));
+                    catalogoObjetos.setPuntosXPheroe(rs.getInt(9));*/
+                    lista.add(catalogoObjetos);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -46,7 +48,7 @@ public class DaoCatalogoObjetos {
         }
 
 
-        public void borrar(String HeroeId) {
+        public void borrar(String IdCatalogoObjetos) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -54,12 +56,12 @@ public class DaoCatalogoObjetos {
             }
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
-            String sql = "DELETE FROM heroe WHERE idHeroe = ?";
+            String sql = "DELETE FROM heroe WHERE idHeroe/*editar*/ = ?";
 
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-                pstmt.setString(1, HeroeId);
+                pstmt.setString(1, IdCatalogoObjetos);
                 pstmt.executeUpdate();
 
             } catch (SQLException e) {
@@ -67,7 +69,7 @@ public class DaoCatalogoObjetos {
             }
         }
 
-        public Heroe buscarPorId(String heroeId) {
+        public CatalogoObjetos buscarPorId(String idCatalogoObjetos) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -76,8 +78,8 @@ public class DaoCatalogoObjetos {
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
 
-            Heroe heroe = null;
-
+            CatalogoObjetos catalogoObjetos = null;
+            /*editar*/
             String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
                     "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
                     "and g.idGenero = h.Genero_idGenero\n" +
@@ -88,36 +90,38 @@ public class DaoCatalogoObjetos {
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql);) {
 
-                pstmt.setString(1, heroeId);
+                pstmt.setString(1, idCatalogoObjetos);
 
                 try (ResultSet rs = pstmt.executeQuery()) {
                     if (rs.next()) {
-                        heroe = new Heroe();
-                        heroe.setHeroeId(rs.getInt(1));
-                        heroe.setNombre(rs.getString(2));
-                        heroe.setEdad(rs.getInt(3));
-                        heroe.setGenero(rs.getString(4));
-                        heroe.setClase(rs.getString(5));
-                        heroe.setNivelHeroeId(rs.getInt(6));
-                        heroe.setAtaqueHeroe(rs.getInt(7));
-                        heroe.setIdPareja(rs.getInt(8));
-                        heroe.setPuntosXPheroe(rs.getInt(9));
+                        catalogoObjetos = new CatalogoObjetos();
+                        catalogoObjetos.setIdCatalogoObjetos(rs.getInt(1));
+                        catalogoObjetos.setNombre(rs.getString(2));
+                        catalogoObjetos.setEfecto(rs.getFloat(3));
+                        catalogoObjetos.setPeso(rs.getFloat(4));
+                        catalogoObjetos.setUsoHeroe(rs.getString(5));
+
+                        /*catalogoObjetos.setNivelHeroeId(rs.getInt(6));
+                        catalogoObjetos.setAtaqueHeroe(rs.getInt(7));
+                        catalogoObjetos.setIdPareja(rs.getInt(8));
+                        catalogoObjetos.setPuntosXPheroe(rs.getInt(9));*/
                     }
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            return heroe;
+            return catalogoObjetos;
 
         }
 
-        public static void guardar(Heroe heroe){
+        public static void guardar(CatalogoObjetos catalogoObjetos){
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
+            /*editaaar*/
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
             String sql = "INSERT INTO heroe (nombreHeroe, edadHeroe, Genero_generoid, ClaseHeroe_idClaseHeroe,NivelHeroe_idNivelHeroe) VALUES (?,?,?,?,?);" +
                     "INSERT INTO estadistica (nombreEstadistica, valorEstadistica) VALUES ('ataque',?);" +
@@ -136,13 +140,17 @@ public class DaoCatalogoObjetos {
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-                pstmt.setString(1, heroe.getNombre());
-                pstmt.setInt(2, heroe.getEdad());
-                pstmt.setInt(3, heroe.getIdGenero());
-                pstmt.setInt(4, heroe.getClaseHeroeId());
-                pstmt.setInt(5, heroe.getNivelHeroeId());
-                pstmt.setInt(6, heroe.getAtaqueHeroe());
-                pstmt.setInt(12, heroe.getIdPareja());
+                pstmt.setString(1, catalogoObjetos.getNombre());
+                pstmt.setFloat(2, catalogoObjetos.getEfecto());
+                pstmt.setFloat(3, catalogoObjetos.getPeso());
+                pstmt.setString(4, catalogoObjetos.getUsoHeroe());
+
+               /*
+                pstmt.setInt(5, catalogoObjetos.getNivelHeroeId());
+                pstmt.setInt(6, catalogoObjetos.getAtaqueHeroe());
+                pstmt.setInt(12, catalogoObjetos.getIdPareja());
+
+                */
 
                 pstmt.executeUpdate();
 

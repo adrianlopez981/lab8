@@ -1,13 +1,13 @@
 package com.example.webapphr.model.daos;
 
-import com.example.webapphr.model.beans.Heroe;
+import com.example.webapphr.model.beans.Hechizos;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class DaoHechizo {
 
-        public ArrayList<Heroe> lista() {
+        public ArrayList<Hechizos> lista() {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -15,7 +15,7 @@ public class DaoHechizo {
             }
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
-            ArrayList<Heroe> lista = new ArrayList<>();
+            ArrayList<Hechizos> lista = new ArrayList<>();
             String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
                     "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
                     "and g.idGenero = h.Genero_idGenero\n" +
@@ -27,17 +27,20 @@ public class DaoHechizo {
                  ResultSet rs = stmt.executeQuery(sql);) {
 
                 while (rs.next()) {
-                    Heroe heroe = new Heroe();
-                    heroe.setHeroeId(rs.getInt(1));
-                    heroe.setNombre(rs.getString(2));
-                    heroe.setEdad(rs.getInt(3));
-                    heroe.setGenero(rs.getString(4));
-                    heroe.setClase(rs.getString(5));
-                    heroe.setNivelHeroeId(rs.getInt(6));
-                    heroe.setAtaqueHeroe(rs.getInt(7));
-                    heroe.setIdPareja(rs.getInt(8));
+                    Hechizos hechizos = new Hechizos();
+                    hechizos.setIdHechizo(rs.getInt(1));
+                    hechizos.setNombre(rs.getString(2));
+                    hechizos.setElemento(rs.getString(3));
+                    hechizos.setPotencia(rs.getFloat(4));
+                    hechizos.setPrecision(rs.getFloat(5));
+                    hechizos.setHechizobase(rs.getString(6));
+                    hechizos.setNivelAprendizaje(rs.getFloat(7));
+                   /*
+                    hechizos.setIdPareja(rs.getInt(8));
                     heroe.setPuntosXPheroe(rs.getInt(9));
-                    lista.add(heroe);
+
+                    */
+                    lista.add(hechizos);
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -67,7 +70,7 @@ public class DaoHechizo {
             }
         }
 
-        public Heroe buscarPorId(String heroeId) {
+        public Hechizos buscarPorId(String idHechizos) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -76,8 +79,9 @@ public class DaoHechizo {
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
 
-            Heroe heroe = null;
+            Hechizos hechizos = null;
 
+            /*EDITAR*/
             String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
                     "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
                     "and g.idGenero = h.Genero_idGenero\n" +
@@ -88,30 +92,33 @@ public class DaoHechizo {
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql);) {
 
-                pstmt.setString(1, heroeId);
+                pstmt.setString(1, idHechizos);
 
                 try (ResultSet rs = pstmt.executeQuery()) {
                     if (rs.next()) {
-                        heroe = new Heroe();
-                        heroe.setHeroeId(rs.getInt(1));
-                        heroe.setNombre(rs.getString(2));
-                        heroe.setEdad(rs.getInt(3));
-                        heroe.setGenero(rs.getString(4));
-                        heroe.setClase(rs.getString(5));
-                        heroe.setNivelHeroeId(rs.getInt(6));
-                        heroe.setAtaqueHeroe(rs.getInt(7));
-                        heroe.setIdPareja(rs.getInt(8));
-                        heroe.setPuntosXPheroe(rs.getInt(9));
+                        hechizos = new Hechizos();
+                        hechizos.setIdHechizo(rs.getInt(1));
+                        hechizos.setNombre(rs.getString(2));
+                        hechizos.setElemento(rs.getString(3));
+                        hechizos.setPotencia(rs.getFloat(4));
+                        hechizos.setPrecision(rs.getFloat(5));
+                        hechizos.setHechizobase(rs.getString(6));
+                        hechizos.setNivelAprendizaje(rs.getFloat(7));
+                        /*
+                        hechizos.setIdPareja(rs.getInt(8));
+                        hechizos.setPuntosXPheroe(rs.getInt(9));
+
+                         */
                     }
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            return heroe;
+            return hechizos;
 
         }
 
-        public static void guardar(Heroe heroe){
+        public static void guardar(Hechizos hechizos){
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -136,13 +143,13 @@ public class DaoHechizo {
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-                pstmt.setString(1, heroe.getNombre());
-                pstmt.setInt(2, heroe.getEdad());
-                pstmt.setInt(3, heroe.getIdGenero());
-                pstmt.setInt(4, heroe.getClaseHeroeId());
-                pstmt.setInt(5, heroe.getNivelHeroeId());
-                pstmt.setInt(6, heroe.getAtaqueHeroe());
-                pstmt.setInt(12, heroe.getIdPareja());
+                pstmt.setString(1, hechizos.getNombre());
+                pstmt.setInt(2, hechizos.getIdHechizo());
+                pstmt.setString(3, hechizos.getElemento());
+                pstmt.setFloat(4, hechizos.getPotencia());
+                pstmt.setString(5, hechizos.getHechizobase());
+                pstmt.setFloat(6, hechizos.getNivelAprendizaje());
+
 
                 pstmt.executeUpdate();
 
