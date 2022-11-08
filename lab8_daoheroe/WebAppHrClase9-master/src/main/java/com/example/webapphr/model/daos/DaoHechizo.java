@@ -16,6 +16,7 @@ public class DaoHechizo {
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
             ArrayList<Hechizos> lista = new ArrayList<>();
+            /*EDITAR*/
             String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
                     "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
                     "and g.idGenero = h.Genero_idGenero\n" +

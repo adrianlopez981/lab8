@@ -1,7 +1,7 @@
 package com.example.webapphr.servlets;
 
-import com.example.webapphr.model.beans.Hechizos;
-import com.example.webapphr.model.daos.DaoHechizo;
+import com.example.webapphr.model.beans.Enemigo;
+import com.example.webapphr.model.daos.DaoEnemigo;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -15,13 +15,13 @@ public class EnemigoServlet extends HttpServlet {
         String action = request.getParameter("action");
         action = (action == null) ? "listar" : action;
         RequestDispatcher requestDispatcher;
-        DaoHechizo daoHechizo= new DaoHechizo();
-        String HechizoId;
-        Hechizos hechizos;
+        DaoEnemigo daoEnemigo= new DaoEnemigo();
+        String EnemigoId;
+        Enemigo enemigo;
 
         switch (action) {
             case "listar":
-                request.setAttribute("lista", daoHechizo.lista());
+                request.setAttribute("lista", daoEnemigo.lista());
 
                 requestDispatcher = request.getRequestDispatcher("jobs/lista.jsp");
                 requestDispatcher.forward(request, response);
@@ -31,22 +31,22 @@ public class EnemigoServlet extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
             case "editar":
-                HechizoId = request.getParameter("idHechizo");
-                hechizos = daoHechizo.buscarPorId(HechizoId);
+                EnemigoId = request.getParameter("idEnemigo");
+                enemigo = daoEnemigo.buscarPorId(EnemigoId);
 
-                if (hechizos != null) { //abro el form para editar
-                    request.setAttribute("hechizos", hechizos);
+                if (enemigo != null) { //abro el form para editar
+                    request.setAttribute("enemigo", enemigo);
                     requestDispatcher = request.getRequestDispatcher("jobs/formEditar.jsp");
                     requestDispatcher.forward(request, response);
                 } else { //id no encontrado
-                    response.sendRedirect(request.getContextPath() + "/HechizoServlet");
+                    response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
                 }
                 break;
             case "borrar":  // JobServlet?action=borrar&id=50
-                HechizoId = request.getParameter("idHeroe");
-                daoHechizo.borrar(HechizoId);
+                EnemigoId = request.getParameter("idEnemigo");
+                daoEnemigo.borrar(EnemigoId);
 
-                response.sendRedirect(request.getContextPath() + "/HeroeServlet");
+                response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
                 break;
         }
 
@@ -56,44 +56,60 @@ public class EnemigoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        DaoHechizo daoHechizo = new DaoHechizo();
+        DaoEnemigo daoEnemigo = new DaoEnemigo();
 
         switch (action) {
             case "guardar":
-                String idheroeStr = request.getParameter("idHeroe");
-                int idheroe = Integer.parseInt(idheroeStr);
-                String nombreHeroe = request.getParameter("nombreHeroe");
-                String edadStr = request.getParameter("edadHeroe");
-                int edadHeroe = Integer.parseInt(edadStr); //esto deben validar
+                String idenemigoStr = request.getParameter("idEnemigo");
+                int enemigoId = Integer.parseInt(idenemigoStr);
+                String nombreEnemigo = request.getParameter("nombreEnemigo");
+
+                String edadEnemigoStr = request.getParameter("edadEnemigo");
+
+                int edadEnemigo = Integer.parseInt(edadEnemigoStr); //esto deben validar
+
                 String idgeneroStr = request.getParameter("genero_idgenero");
                 int idGenero = Integer.parseInt(idgeneroStr);
-                String claseheroeidStr = request.getParameter("ClaseHeroe_idClaseHeroe");
-                int claseHeroe = Integer.parseInt(claseheroeidStr);
-                String NivelHeroeStr = request.getParameter("NivelHeroe_idNivelHeroe");
-                int NivelHeroe = Integer.parseInt(NivelHeroeStr);
-                String ataqueStr = request.getParameter("ataque");
-                int ataqueHeroe = Integer.parseInt(ataqueStr);
-                String idparejaStr = request.getParameter("pareja_idpareja");
-                int idpareja = Integer.parseInt(idparejaStr);
 
-                Hechizos hechizos = new Hechizos();
-                hechizos.setIdHechizo(idHechizos);
-                hechizos.setNombre(nombreHeroe);
-                hechizos.setEdad(edadHeroe);
-                hechizos.setIdGenero(idGenero);
-                hechizos.setClaseHeroeId(claseHeroe);
-                hechizos.setNivelHeroeId(NivelHeroe);
-                hechizos.setAtaqueHeroe(ataqueHeroe);
-                hechizos.setIdPareja(idpareja);
-                DaoHechizo.guardar(hechizos);
+                String experienciaEnemigoidStr = request.getParameter("Experiencia_idExperienciaEnemigo");
+                int experienciaEnemigo = Integer.parseInt(experienciaEnemigoidStr);
+
+                String objetoStr = request.getParameter("Objeto Enemigo");
+
+                String probabilidadStr = request.getParameter("Probabilidad");
+                int probabilidad = Integer.parseInt(probabilidadStr);
+
+                String IdclaseEnemigoStr = request.getParameter("clase Enemigo_id");
+                int claseEnemigoId = Integer.parseInt(IdclaseEnemigoStr);
+
+                String claseStr = request.getParameter("clase");
+
+                String idataqueEnemigoStr = request.getParameter("ataque Enemigo");
+                int idataqueEnemigo = Integer.parseInt(idataqueEnemigoStr);
+
+                Enemigo enemigo = new Enemigo();
+                enemigo.setEnemigoId(enemigoId);
+                enemigo.setNombreEnemigo(nombreEnemigo);
+                enemigo.setEdadEnemigo(edadEnemigo);
+                enemigo.setIdGenero(idGenero);
+
+                enemigo.setExperienciaEnemigo(experienciaEnemigo);
+                enemigo.setObjeto(objetoStr);
+                enemigo.setProbabilidad(probabilidad);
+                enemigo.setClaseEnemigoId(claseEnemigoId);
+                enemigo.setClase(claseStr);
+                enemigo.setAtaqueEnemigo(idataqueEnemigo);
+
+                DaoEnemigo.guardar(enemigo);
 
 
 
-                response.sendRedirect(request.getContextPath() + "/HechizoServlet");
+                response.sendRedirect(request.getContextPath() + "/EnemigoServlet");
                 break;
             case "actualizar":
 
-                String idheroeStr2 = request.getParameter("idHeroe");
+                String idenemigoStr2 = request.getParameter("idEnemigo");
+
                 String nombreHeroe1 = request.getParameter("nombreHeroe");
                 String edadStr2 = request.getParameter("edadHeroe");
                 String idgeneroStr2 = request.getParameter("genero_idgenero");
@@ -104,16 +120,17 @@ public class EnemigoServlet extends HttpServlet {
 
                 try {
 
-                    int idHeroe1 = Integer.parseInt(idheroeStr2);
+                    int idHeroe1 = Integer.parseInt(idenemigoStr2);
+
                     int edadHeroe1 = Integer.parseInt(edadStr2); //esto deben validar
-                    int generoIdHeroe1 = Integer.parseInt(idgeneroStr2);
-                    int claseIdHeroe1 = Integer.parseInt(claseheroeidStr2);
+                    int generoIdEnemigo1 = Integer.parseInt(idgeneroStr2);
+                   /* int claseIdHeroe1 = Integer.parseInt(claseheroeidStr2);
                     int nivelHeroe1 = Integer.parseInt(NivelHeroeStr2);
                     int Ataque1 = Integer.parseInt(ataqueStr2);
-                    int idPareja1 = Integer.parseInt(idparejaStr2);
+                    int idPareja1 = Integer.parseInt(idparejaStr2);*/
 
 
-                    daoHechizo.actualizar(nombreHeroe1,edadHeroe1,generoIdHeroe1,claseIdHeroe1,nivelHeroe1,idHeroe1,Ataque1,idPareja1);
+                    daoEnemigo.actualizar(nombreHeroe1,edadHeroe1,idHeroe1);
 
                     response.sendRedirect(request.getContextPath() + "/HechizoServlet");
                 } catch (NumberFormatException e) {
