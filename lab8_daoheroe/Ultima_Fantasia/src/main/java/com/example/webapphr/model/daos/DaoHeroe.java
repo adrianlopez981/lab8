@@ -16,12 +16,13 @@ public class DaoHeroe {
 
         String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
         ArrayList<Heroe> lista = new ArrayList<>();
-        String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
+        /*String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
                 "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
                 "and g.idGenero = h.Genero_idGenero\n" +
                 "and eh.idEstadisticaHeroe = ehh.EstadisticaHeroe_idEstadisticaHeroe and eh.nombreEstadistica = \"ataque\"\n" +
                 "and ehh.heroe_idHeroe = h.idheroe\n" +
-                "order by idheroe asc";
+                "order by idheroe asc";*/
+        String sql = "select * from heroe";
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql);) {
@@ -36,7 +37,7 @@ public class DaoHeroe {
                 heroe.setNivelHeroeId(rs.getInt(6));
                 heroe.setAtaqueHeroe(rs.getInt(7));
                 heroe.setIdPareja(rs.getInt(8));
-                heroe.setPuntosXPheroe(rs.getInt(9));
+                heroe.setPuntosXPheroe(ExperienciaHeroe(heroe.getNivelHeroeId()));
                 lista.add(heroe);
             }
         } catch (SQLException e) {
