@@ -1,13 +1,14 @@
 package com.example.webapphr.model.daos;
 
 import com.example.webapphr.model.beans.Enemigo;
+import com.example.webapphr.model.beans.CatalogoObjetos;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class DaoEnemigo {
 
-        public ArrayList<Enemigo> lista() {
+        public ArrayList<Enemigo> listaEnemigo() {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -17,28 +18,24 @@ public class DaoEnemigo {
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
             ArrayList<Enemigo> lista = new ArrayList<>();
 
-            /*EDITAR*/
+            String sql = "select  e.nombreEnemigo, c.Clasificacion, ListaAtaquesEnemigo_idListaAtaquesEnemigo, ExperienciaXDerrotaEnemigo_idExperienciaXDerrotaEnemigo," +
+                    "o.nombreObjeto, " +
+                    "p.numeroProbabilidad, g.nombre, e.idEnemigo, c.idClasificacionAtaqueEnemigo, o.idObjeto" +
+                    " from enemigo e, clasificacionataqueenemigo c, objeto o , genero g, probabilidadobjeto p";
 
-            String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
-                    "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
-                    "and g.idGenero = h.Genero_idGenero\n" +
-                    "and eh.idEstadisticaHeroe = ehh.EstadisticaHeroe_idEstadisticaHeroe and eh.nombreEstadistica = \"ataque\"\n" +
-                    "and ehh.heroe_idHeroe = h.idheroe\n" +
-                    "order by idheroe asc";
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  Statement stmt = connection.createStatement();
-                 ResultSet rs = stmt.executeQuery(sql);) {
+                 ResultSet rs = stmt.executeQuery(sql)) {
 
                 while (rs.next()) {
                     Enemigo enemigo = new Enemigo();
                     enemigo.setEnemigoId(rs.getInt(1));
                     enemigo.setNombreEnemigo(rs.getString(2));
-                    enemigo.setEdadEnemigo(rs.getInt(3));
-                    enemigo.setClase(rs.getString(4));
-                    enemigo.setAtaqueEnemigo(rs.getInt(5));
-                    enemigo.setExperienciaEnemigo(rs.getInt(6));
-                    enemigo.setObjeto(rs.getString(7));
-                    enemigo.setGenero(rs.getString(8));
+                    enemigo.setClase(rs.getString(3));
+                    enemigo.setAtaqueEnemigo(rs.getInt(4));
+                    enemigo.setExperienciaEnemigo(rs.getInt(5));
+                    enemigo.setObjeto(rs.getString(6));
+                    enemigo.setGenero(rs.getString(7));
                     lista.add(enemigo);
                 }
             } catch (SQLException e) {
@@ -56,7 +53,7 @@ public class DaoEnemigo {
             }
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
-            String sql = "DELETE FROM heroe WHERE idEnemigo = ?";
+            String sql = "DELETE FROM enemigo WHERE idEnemigo = ?";
 
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -79,13 +76,8 @@ public class DaoEnemigo {
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
 
             Enemigo enemigo = null;
-            /*EDITAR*/
-            String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
-                    "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
-                    "and g.idGenero = h.Genero_idGenero\n" +
-                    "and eh.idEstadisticaHeroe = ehh.EstadisticaHeroe_idEstadisticaHeroe and eh.nombreEstadistica = \"ataque\"\n" +
-                    "and ehh.heroe_idHeroe = h.idheroe\n" +
-                    "and h.idHeroe = ? order by idheroe asc;";
+
+            String sql = "select * from enemigo where idEnemigo=?";
 
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql);) {
@@ -97,12 +89,11 @@ public class DaoEnemigo {
                         enemigo = new Enemigo();
                         enemigo.setEnemigoId(rs.getInt(1));
                         enemigo.setNombreEnemigo(rs.getString(2));
-                        enemigo.setEdadEnemigo(rs.getInt(3));
-                        enemigo.setClase(rs.getString(4));
-                        enemigo.setAtaqueEnemigo(rs.getInt(5));
-                        enemigo.setExperienciaEnemigo(rs.getInt(6));
-                        enemigo.setObjeto(rs.getString(7));
-                        enemigo.setGenero(rs.getString(8));
+                        enemigo.setClase(rs.getString(3));
+                        enemigo.setAtaqueEnemigo(rs.getInt(4));
+                        enemigo.setExperienciaEnemigo(rs.getInt(5));
+                        enemigo.setObjeto(rs.getString(6));
+                        enemigo.setGenero(rs.getString(7));
 
                     }
                 }

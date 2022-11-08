@@ -21,7 +21,7 @@ public class EnemigoServlet extends HttpServlet {
 
         switch (action) {
             case "listar":
-                request.setAttribute("lista", daoEnemigo.lista());
+                request.setAttribute("lista", daoEnemigo.listaEnemigo());
 
                 requestDispatcher = request.getRequestDispatcher("jobs/lista.jsp");
                 requestDispatcher.forward(request, response);
