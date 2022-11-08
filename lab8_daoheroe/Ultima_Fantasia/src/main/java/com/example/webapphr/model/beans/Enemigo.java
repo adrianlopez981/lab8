@@ -7,6 +7,8 @@ public class Enemigo {
     private int idGenero;
     private int experienciaEnemigo;
     private String objeto;
+
+    private int idObjeto;
     private float probabilidad;
     private int claseEnemigoId;
     private String Genero;
@@ -99,5 +101,13 @@ public class Enemigo {
 
     public void setAtaqueEnemigo(int ataqueEnemigo) {
         this.ataqueEnemigo = ataqueEnemigo;
+    }
+
+    public int getIdObjeto() {
+        return idObjeto;
+    }
+
+    public void setIdObjeto(int idObjeto) {
+        this.idObjeto = idObjeto;
     }
 }

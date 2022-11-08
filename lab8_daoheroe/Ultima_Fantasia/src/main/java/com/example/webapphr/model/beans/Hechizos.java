@@ -1,7 +1,7 @@
 package com.example.webapphr.model.beans;
 
 public class Hechizos {
-    private String nombre;
+    private String nombreHechizo;
     private int idHechizo;
     private String elemento;
     private float potencia;
@@ -9,12 +9,12 @@ public class Hechizos {
     private String hechizobase;
     private float nivelAprendizaje;
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreHechizo() {
+        return nombreHechizo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreHechizo(String nombreHechizo) {
+        this.nombreHechizo = nombreHechizo;
     }
 
     public int getIdHechizo() {
