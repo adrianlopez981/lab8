@@ -185,4 +185,17 @@ public class DaoHeroe {
         }
     }
 
+    public int ExperienciaHeroe(int e){
+        int experiencia = 0;
+        if(100>=e && e>=36){
+            experiencia = (e*e*e)*(32+(e/2))/50;
+        }
+        else if(35>=e && 16<=e){
+            experiencia = (e*e*e)*(14+e)/50;
+        } else if (e<=15) {
+            experiencia = (e*e*e)*(24+(e+1/3))/50;
+        }
+        return experiencia;
+    }
+
 }
