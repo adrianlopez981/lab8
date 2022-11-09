@@ -14,7 +14,7 @@ public class DaoHeroe {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         ArrayList<Heroe> lista = new ArrayList<>();
         /*String sql = "select h.idheroe, h.nombreHeroe, h.edadHeroe, REPLACE(REPLACE(REPLACE(g.nombre,\"M\",\"Masculino\"),\"F\",\"Femenino\"),\"O\",\"Otros\") as nombreGenero,ch.nombreclaseheroe,h.nivelheroe_idnivelheroe as nivelInicialHeroe, eh.valorEstadistica as ataqueHeroe,h.pareja_idPareja, h.PuntosXPHeroe from bbdd_lab8.genero g, bbdd_lab8.heroe h, bbdd_lab8.claseheroe ch,bbdd_lab8.estadisticaheroe eh, bbdd_lab8.estadisticaheroe_has_heroe ehh\n" +
                 "where ch.idclaseheroe = h.claseheroe_idclaseheroe\n" +
@@ -54,7 +54,7 @@ public class DaoHeroe {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         String sql = "DELETE FROM heroe WHERE idHeroe = ?";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
@@ -75,7 +75,7 @@ public class DaoHeroe {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
 
         Heroe heroe = null;
 
@@ -119,7 +119,7 @@ public class DaoHeroe {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         String sql = "INSERT INTO heroe (nombreHeroe, edadHeroe, Genero_generoid, ClaseHeroe_idClaseHeroe,NivelHeroe_idNivelHeroe) VALUES (?,?,?,?,?);" +
                 "INSERT INTO estadistica (nombreEstadistica, valorEstadistica) VALUES ('ataque',?);" +
                 "INSERT INTO estadistica (nombreEstadistica, valorEstadistica) VALUES ('defensa',?);" +
@@ -160,7 +160,7 @@ public class DaoHeroe {
             throw new RuntimeException(e);
         }
         /*cambiar los insert into por updates */
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         String sql =
                 "UPDATE heroe SET nombreHeroe = ?, edadHeroe = ?, Genero_generoid = ?, ClaseHeroe_idClaseHeroe = ?,NivelHeroe_idNivelHeroe = ?, Pareja_idPareja = ? WHERE idHeroe = ?;" +
                         "UPDATE e SET e.ataque = ?, e.defensa = ?, e.velocidad = ?, e.poderMagico = ?, e.espiritu = ?, e.suerte =? FROM estadistica e, estadisticaheroe_has_heroe ehh, heroe h WHERE ehh.heroe_idheroe = ? and e.idestadisticaHeroe = ehh.estadisticaHeroe_idestadisticaHeroe;" +
