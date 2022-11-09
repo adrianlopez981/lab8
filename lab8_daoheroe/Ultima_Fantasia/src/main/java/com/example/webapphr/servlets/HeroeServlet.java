@@ -5,41 +5,45 @@ import com.example.webapphr.model.daos.DaoHeroe;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-
+import com.example.webapphr.model.beans.CatalogoObjetos;
+import com.example.webapphr.model.daos.DaoCatalogoObjetos;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "HeroeServlet", value = "/HeroeServlet")
 public class HeroeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String action = request.getParameter("action");
         action = (action == null) ? "listar" : action;
         RequestDispatcher requestDispatcher;
+
         DaoHeroe daoHeroe = new DaoHeroe();
+        ArrayList<Heroe> listaHeroesSer = daoHeroe.lista();
+
         String HeroeId;
         Heroe heroe;
 
         switch (action) {
             case "listar":
-                request.setAttribute("lista", daoHeroe.lista());
+                request.setAttribute("lista", listaHeroesSer);
 
-                requestDispatcher = request.getRequestDispatcher("jobs/lista.jsp");
+                requestDispatcher = request.getRequestDispatcher("MenuHeroes.jsp");
                 requestDispatcher.forward(request, response);
                 break;
             case "crear":
-                requestDispatcher = request.getRequestDispatcher("jobs/formCrear.jsp");
+                requestDispatcher = request.getRequestDispatcher("AnadirHeroe.jsp");
                 requestDispatcher.forward(request, response);
                 break;
             case "editar":
                 HeroeId = request.getParameter("idHeroe");
                 heroe = daoHeroe.buscarPorId(HeroeId);
 
-                if (heroe != null) { //abro el form para editar
+                if (heroe != null) {
                     request.setAttribute("heroe", heroe);
                     requestDispatcher = request.getRequestDispatcher("jobs/formEditar.jsp");
                     requestDispatcher.forward(request, response);
-                } else { //id no encontrado
+                } else {
                     response.sendRedirect(request.getContextPath() + "/HeroeServlet");
                 }
                 break;
@@ -65,7 +69,7 @@ public class HeroeServlet extends HttpServlet {
                 int idheroe = Integer.parseInt(idheroeStr);
                 String nombreHeroe = request.getParameter("nombreHeroe");
                 String edadStr = request.getParameter("edadHeroe");
-                int edadHeroe = Integer.parseInt(edadStr); //esto deben validar
+                int edadHeroe = Integer.parseInt(edadStr);
                 String idgeneroStr = request.getParameter("genero_idgenero");
                 int idGenero = Integer.parseInt(idgeneroStr);
                 String claseheroeidStr = request.getParameter("ClaseHeroe_idClaseHeroe");
@@ -118,7 +122,7 @@ public class HeroeServlet extends HttpServlet {
 
                     response.sendRedirect(request.getContextPath() + "/HeroeServlet");
                 } catch (NumberFormatException e) {
-                    response.sendRedirect(request.getContextPath() + "/HeroeServlet?action=editar&id=" );
+                    response.sendRedirect(request.getContextPath() + "/HeroeServlet?action=editar&id=");
                 }
                 break;
         }
