@@ -98,7 +98,7 @@ public class DaoHechizo {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/mydb";
+        String url = "jdbc:mysql://localhost:3306/mydb1";
         String sql = "INSERT INTO heroe (nombreHechizo,Elemento_idElemento,potenciaHechizo, precisionHechizo, hexaHechizoId,ProbabilidadObjeto_idProbabilidadObjeto,exclusividad) VALUES (?,?,?,?,?,?,?)";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
