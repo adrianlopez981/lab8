@@ -1,6 +1,7 @@
 package com.example.webapphr.model.daos;
 
 import com.example.webapphr.model.beans.CatalogoObjetos;
+import jakarta.servlet.RequestDispatcher;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -314,5 +315,80 @@ public class DaoCatalogoObjetos {
         }
         return listaCatalogoObjetos;
     }
+    /*Sí es usado por algun heroe*/
+    public void Si_editarCatalogoObjetos(float efecto, int idCatalogoObjetos) throws SQLException {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        String user = "root";
+        String pasw = "root";
+        String url ="jdbc:mysql://localhost:3306/bbdd_lab8";
+        String sql = "UPDATE objeto SET efecto/usoObjeto = ? WHERE idObjeto =?";
+
+        try(Connection connection = DriverManager.getConnection(url, user, pasw);
+            PreparedStatement prepareStatement = connection.prepareStatement(sql)){
+            prepareStatement.setFloat(1,efecto);
+            prepareStatement.setInt(2,idCatalogoObjetos);
+
+            prepareStatement.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    /*No es usado por algun heroe*/
+    public void No_editarCatalogoObjetos(float efecto, float peso, int idCatalogoObjetos) throws SQLException {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        String user = "root";
+        String pasw = "root";
+        String url ="jdbc:mysql://localhost:3306/bbdd_lab8";
+        String sql = "UPDATE objeto SET efecto/usoObjeto = ?, pesoObjeto=? WHERE idObjeto =?";
+
+        try(Connection connection = DriverManager.getConnection(url, user, pasw);
+            PreparedStatement prepareStatement = connection.prepareStatement(sql)){
+            prepareStatement.setFloat(1,efecto);
+            prepareStatement.setFloat(2,peso);
+            prepareStatement.setInt(3,idCatalogoObjetos);
+            prepareStatement.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+    public void agregarCataObjeto(String nombre,String efecti, float peso, boolean usado) {
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        String user = "root";
+        String pasw = "root";
+        String url ="jdbc:mysql://localhost:3306/bbdd_lab8";
+        String sql = "INSERT INTO objeto (pesoObjeto, nombreObjeto, efecto/usoObjeto) VALUES (?,?,?)";
+
+
+        try (Connection connection = DriverManager.getConnection(url, user, pasw);
+             PreparedStatement pstmt1 = connection.prepareStatement(sql)) {
+
+            pstmt1.setString(2,nombre);
+            pstmt1.setString(3, efecti);
+            pstmt1.setFloat(1,peso);
+            pstmt1.setBoolean(4,usado);
+            pstmt1.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
