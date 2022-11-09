@@ -6,6 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.webapphr.model.beans.CatalogoObjetos" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+  ArrayList<CatalogoObjetos> listaCatalogo = (ArrayList <CatalogoObjetos>) request.getAttribute("listaCatalogoObjetos");
+%>
+
 <!doctype html>
 <html lang="en">
 <head>

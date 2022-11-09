@@ -1,4 +1,4 @@
-<%@ page import="com.example.webapphr.model.beans.Heroe" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Anais
   Date: 5/11/2022
@@ -6,6 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.webapphr.model.beans.Heroe" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+  ArrayList<Heroe> listaHeroes = (ArrayList <Heroe>) request.getAttribute("lista");
+%>
+
 <!doctype html>
 <html lang="en">
 <head>
