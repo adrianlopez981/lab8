@@ -166,7 +166,7 @@ public class DaoEnemigo {
             }
         }
 
-        public void actualizar (String nombreEnemigo,int edadEnemigo, String genero, int claseEnemigo, int experienciaEnemigo,
+        public void actualizarEnemigo (String nombreEnemigo,int edadEnemigo, String genero, int claseEnemigo, int experienciaEnemigo,
                                 String objeto){
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -194,4 +194,5 @@ public class DaoEnemigo {
                 throw new RuntimeException(e);
             }
         }
+
 }
