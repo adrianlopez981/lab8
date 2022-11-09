@@ -194,5 +194,125 @@ public class DaoCatalogoObjetos {
         return listaObjeto;
     }
 
+    /*Por el id del catalogo*/
+    public ArrayList<CatalogoObjetos> IdlistaCatalogoObjetos(){
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        ArrayList<CatalogoObjetos> listaCatalogoObjetos = new ArrayList<>();
+
+        String sql = "SELECT * FROM objeto ORDER BY idObjeto ASC";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);) {
+
+            while (rs.next()) {
+                CatalogoObjetos catalogoObjetos = new CatalogoObjetos();
+                catalogoObjetos.setIdCatalogoObjetos(rs.getInt(1));
+                catalogoObjetos.setNombre(rs.getString(2));
+                catalogoObjetos.setEfecto(rs.getFloat(3));
+                catalogoObjetos.setPeso(rs.getFloat(4));
+                listaCatalogoObjetos.add(catalogoObjetos);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaCatalogoObjetos;
+
+    }
+    /*Por nombre del objeto*/
+    public ArrayList<CatalogoObjetos> nombreCatalogoLista(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        ArrayList<CatalogoObjetos> listaCatalogoObjetos = new ArrayList<>();
+
+        String sql = "SELECT * FROM objeto ORDER BY nombreObjeto ASC";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);) {
+
+            while (rs.next()) {
+                CatalogoObjetos catalogoObjetos = new CatalogoObjetos();
+                catalogoObjetos.setIdCatalogoObjetos(rs.getInt(1));
+                catalogoObjetos.setNombre(rs.getString(2));
+                catalogoObjetos.setEfecto(rs.getFloat(3));
+                catalogoObjetos.setPeso(rs.getFloat(4));
+                listaCatalogoObjetos.add(catalogoObjetos);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaCatalogoObjetos;
+    }
+
+    /*por peso*/
+    public ArrayList<CatalogoObjetos> pesoCatalogoObjetoLista(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        ArrayList<CatalogoObjetos> listaCatalogoObjetos = new ArrayList<>();
+
+        String sql = "SELECT * FROM objeto ORDER BY pesoObjeto ASC";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);) {
+
+            while (rs.next()) {
+                CatalogoObjetos catalogoObjetos = new CatalogoObjetos();
+                catalogoObjetos.setIdCatalogoObjetos(rs.getInt(1));
+                catalogoObjetos.setNombre(rs.getString(2));
+                catalogoObjetos.setEfecto(rs.getFloat(3));
+                catalogoObjetos.setPeso(rs.getFloat(4));
+                listaCatalogoObjetos.add(catalogoObjetos);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaCatalogoObjetos;
+    }
+
+    /*por efecto*/
+    public ArrayList<CatalogoObjetos> efectoCatalogoObjetoLista(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        ArrayList<CatalogoObjetos> listaCatalogoObjetos = new ArrayList<>();
+
+        String sql = "SELECT * FROM objeto ORDER BY efecto/usoObjeto ASC";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);) {
+
+            while (rs.next()) {
+                CatalogoObjetos catalogoObjetos = new CatalogoObjetos();
+                catalogoObjetos.setIdCatalogoObjetos(rs.getInt(1));
+                catalogoObjetos.setNombre(rs.getString(2));
+                catalogoObjetos.setEfecto(rs.getFloat(3));
+                catalogoObjetos.setPeso(rs.getFloat(4));
+                listaCatalogoObjetos.add(catalogoObjetos);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaCatalogoObjetos;
+    }
 }
 
