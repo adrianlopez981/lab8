@@ -15,7 +15,7 @@ public class DaoCatalogoObjetos {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         ArrayList<CatalogoObjetos> listaObjetos = new ArrayList<>();
 
         String sql = "select * from objeto";
@@ -46,7 +46,7 @@ public class DaoCatalogoObjetos {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         String sql = "DELETE FROM objeto WHERE idObjeto = ?";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
@@ -67,7 +67,7 @@ public class DaoCatalogoObjetos {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
 
         CatalogoObjetos catalogoObjetos = null;
 
@@ -103,7 +103,7 @@ public class DaoCatalogoObjetos {
         }
 
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         String sql = "INSERT INTO objeto (nombreObjeto, efecto/usoObjeto, pesoObjeto) VALUES (?,?,?);";
 
 
@@ -128,7 +128,7 @@ public class DaoCatalogoObjetos {
             throw new RuntimeException(e);
         }
         /*cambiar los insert into por updates */
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         String sql = "UPDATE objeto SET nombreObjeto=?, efecto/usoObjeto=?, pesoObjeto=? WHERE idObjeto=?";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
@@ -169,7 +169,7 @@ public class DaoCatalogoObjetos {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         ArrayList<CatalogoObjetos> listaObjeto = new ArrayList<>();
         String sql = "SELECT * FROM objeto WHERE lower(nombreObjeto) like ?";
 
@@ -204,7 +204,7 @@ public class DaoCatalogoObjetos {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         ArrayList<CatalogoObjetos> listaCatalogoObjetos = new ArrayList<>();
 
         String sql = "SELECT * FROM objeto ORDER BY idObjeto ASC";
@@ -234,7 +234,7 @@ public class DaoCatalogoObjetos {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         ArrayList<CatalogoObjetos> listaCatalogoObjetos = new ArrayList<>();
 
         String sql = "SELECT * FROM objeto ORDER BY nombreObjeto ASC";
@@ -264,7 +264,7 @@ public class DaoCatalogoObjetos {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         ArrayList<CatalogoObjetos> listaCatalogoObjetos = new ArrayList<>();
 
         String sql = "SELECT * FROM objeto ORDER BY pesoObjeto ASC";
@@ -294,7 +294,7 @@ public class DaoCatalogoObjetos {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         ArrayList<CatalogoObjetos> listaCatalogoObjetos = new ArrayList<>();
 
         String sql = "SELECT * FROM objeto ORDER BY efecto/usoObjeto ASC";
@@ -324,7 +324,7 @@ public class DaoCatalogoObjetos {
         }
         String user = "root";
         String pasw = "root";
-        String url ="jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url ="jdbc:mysql://localhost:3306/mydb";
         String sql = "UPDATE objeto SET efecto/usoObjeto = ? WHERE idObjeto =?";
 
         try(Connection connection = DriverManager.getConnection(url, user, pasw);
@@ -349,7 +349,7 @@ public class DaoCatalogoObjetos {
         }
         String user = "root";
         String pasw = "root";
-        String url ="jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url ="jdbc:mysql://localhost:3306/mydb";
         String sql = "UPDATE objeto SET efecto/usoObjeto = ?, pesoObjeto=? WHERE idObjeto =?";
 
         try(Connection connection = DriverManager.getConnection(url, user, pasw);
@@ -373,7 +373,7 @@ public class DaoCatalogoObjetos {
         }
         String user = "root";
         String pasw = "root";
-        String url ="jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url ="jdbc:mysql://localhost:3306/mydb";
         String sql = "INSERT INTO objeto (pesoObjeto, nombreObjeto, efecto/usoObjeto) VALUES (?,?,?)";
 
 
