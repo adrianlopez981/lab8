@@ -100,7 +100,7 @@ public class EnemigoServlet extends HttpServlet {
                 enemigo.setClase(claseStr);
                 enemigo.setAtaqueEnemigo(idataqueEnemigo);
 
-                DaoEnemigo.guardar(enemigo);
+                DaoEnemigo.guardarEnemigo(enemigo);
 
 
 

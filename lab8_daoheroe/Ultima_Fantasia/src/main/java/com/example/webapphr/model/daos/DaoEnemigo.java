@@ -1,7 +1,6 @@
 package com.example.webapphr.model.daos;
 
 import com.example.webapphr.model.beans.Enemigo;
-import com.example.webapphr.model.beans.CatalogoObjetos;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -44,6 +43,39 @@ public class DaoEnemigo {
             return lista;
         }
 
+        public boolean editarEnemigo(Enemigo enemigo){
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+            String user = "root";
+            String pasw = "root";
+            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String sql = "update enemigo set nombreEnemigo = ?, c.idClasificacionAtaqueEnemigo = ?, c.clasificacion = ?, ExperienciaXDerrotaEnemigo_idExperienciaXDerrotaEnemigo = ?, o.idObjeto = ?, Genero_idGenero = ? where idEnemigo = ?" +
+                    " from clasificacionataqueenemigo c, objeto o ";
+
+
+            try(Connection conn = DriverManager.getConnection(url, user, pasw);
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+                pstmt.setString(1, enemigo.getNombreEnemigo());
+                pstmt.setInt(2,enemigo.getClaseEnemigoId());
+                pstmt.setInt(3, enemigo.getAtaqueEnemigo());
+                pstmt.setInt(4,enemigo.getExperienciaEnemigo());
+                pstmt.setInt(5,enemigo.getIdObjeto());
+                pstmt.setFloat(6,enemigo.getProbabilidad());
+                pstmt.setString(7,enemigo.getGenero());
+                pstmt.setInt(8,enemigo.getEnemigoId());
+
+                pstmt.executeUpdate();
+                return true;
+            }
+            catch (SQLException e){
+                return false;
+            }
+        }
 
         public void borrar(String enemigoId) {
             try {
@@ -66,7 +98,7 @@ public class DaoEnemigo {
             }
         }
 
-        public Enemigo buscarPorId(String enemigoId) {
+        public Enemigo buscarEnemigoPorId(String enemigoId) {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -104,7 +136,7 @@ public class DaoEnemigo {
 
         }
 
-        public static void guardar(Enemigo enemigo){
+        public static void guardarEnemigo(Enemigo enemigo){
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
@@ -112,18 +144,8 @@ public class DaoEnemigo {
             }
 
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
-            String sql = "INSERT INTO heroe (nombreHeroe, edadHeroe, Genero_generoid, ClaseHeroe_idClaseHeroe,NivelHeroe_idNivelHeroe) VALUES (?,?,?,?,?);" +
-                    "INSERT INTO estadistica (nombreEstadistica, valorEstadistica) VALUES ('ataque',?);" +
-                    "INSERT INTO estadistica (nombreEstadistica, valorEstadistica) VALUES ('defensa',?);" +
-                    "INSERT INTO estadistica (nombreEstadistica, valorEstadistica) VALUES ('velocidad',?);" +
-                    "INSERT INTO estadistica (nombreEstadistica, valorEstadistica) VALUES ('poder magico',?);" +
-                    "INSERT INTO estadistica (nombreEstadistica, valorEstadistica) VALUES ('espiritu',?);" +
-                    "INSERT INTO estadistica (nombreEstadistica, valorEstadistica) VALUES ('suerte',?);" +
-                    "UPDATE ehh SET ehh.heroe_idheroe = h.idHeroe FROM estadisticaheroe_has_heroe ehh, heroe h WHERE h.PuntosXPHeroe is null;" +
-                    "INSERT INTO pareja(idPareja) VALUES (?);" +
-                    "UPDATE rp SET rp.heroe_idheroe = h.idHeroe, rp.Pareja_idPareja = p.idPareja FROM relacionpareja rp, heroe h, pareja p WHERE h.PuntosXPHeroe is null and p.Heroe_idHeroe is null;" +
-                    "UPDATE pareja SET Heroe_idHeroe = idPareja WHERE Heroe_idHeroe is null;" +
-                    "UPDATE h SET h.Pareja_idPareja = rp.Pareja_idPareja FROM relacionpareja rp, heroe h WHERE h.PuntosXPHeroe is null;";
+            String sql = "insert into enemigo (nombreEnemigo,c.idClaseHeroe,ListaAtaquesEnemigo_idListaAtaquesEnemigo,ExperienciaXDerrotaEnemigo_idExperienciaXDerrotaEnemigo,o.nombreObjeto,p.numeroProbabilidad, g.nombre ) VALUES (?,?,?,?,?,?,?)"
+                    + " from clasificacionataqueenemigo c, objeto o, p.probabilidadobjeto ,g.genero";
 
 
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
@@ -133,10 +155,8 @@ public class DaoEnemigo {
                 pstmt.setInt(2, enemigo.getEdadEnemigo());
                 pstmt.setString(3, enemigo.getGenero());
                 pstmt.setString(4, enemigo.getClase());
-                pstmt.setInt(5, enemigo.getEdadEnemigo());
-                pstmt.setInt(6, enemigo.getExperienciaEnemigo());
-                pstmt.setString(7, enemigo.getObjeto());
-                pstmt.setString(8, enemigo.getGenero());
+                pstmt.setInt(5, enemigo.getExperienciaEnemigo());
+                pstmt.setString(6, enemigo.getObjeto());
 
 
                 pstmt.executeUpdate();
@@ -145,33 +165,28 @@ public class DaoEnemigo {
                 throw new RuntimeException(e);
             }
         }
-        /*EDITAR*/
-        public void actualizar (String nombreEnemigo,int edadEnemigo, String genero, int claseIdHeroe, int nivelHeroe,
-                                int idHeroe, int Ataque, int idPareja){
+
+        public void actualizar (String nombreEnemigo,int edadEnemigo, String genero, int claseEnemigo, int experienciaEnemigo,
+                                String objeto){
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            /*cambiar los insert into por updates */
+
             String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
-            String sql =
-                    "UPDATE heroe SET nombreHeroe = ?, edadHeroe = ?, Genero_generoid = ?, ClaseHeroe_idClaseHeroe = ?,NivelHeroe_idNivelHeroe = ? WHERE idHeroe = ?;" +
-                            "UPDATE e SET e.ataque = ?, e.defensa = ?, e.velocidad = ?, e.poderMagico = ?, e.espiritu = ?, e.suerte =? FROM estadistica e, estadisticaheroe_has_heroe ehh, heroe h WHERE ehh.heroe_idheroe = ? and e.idestadisticaHeroe = ehh.estadisticaHeroe_idestadisticaHeroe;" +
-                            "UPDATE p, rp, h SET p.idPareja = ?, p.heroe_idheroe = p.idPareja, rp.Pareja_idPareja = p.idPareja, h.Pareja_idPareja = rp.Pareja_idPareja FROM pareja p, heroe h, relacionpareja rp WHERE h.idheroe = ?, h.idheroe = rp.heroe_idheroe;";
+            String sql = "update enemigo set nombreEnemigo, ListaAtaquesEnemigo_idListaAtaquesEnemigo, Genero_idGenero,ExperienciaXDerrotaEnemigo_idExperienciaXDerrotaEnemigo,o.nombreObjeto,p.numeroProbabilidad, g.nombre, c.idClaseHeroe "
+                    + "from clasificacionataqueenemigo c, objeto o, p.probabilidadobjeto ,g.genero";
 
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
                  PreparedStatement pstmt = connection.prepareStatement(sql)) {
-                /*colocar campo correcto para actualizar*/
-                pstmt.setString(1, nombreEnemigo);
-                pstmt.setString(2, genero);
-                pstmt.setInt(3, edadEnemigo);
-                pstmt.setInt(4, claseIdHeroe);
-                pstmt.setInt(5, nivelHeroe);
-                pstmt.setInt(6, idHeroe);
-                pstmt.setInt(7, Ataque);
-                pstmt.setInt(8, idPareja);
 
+                pstmt.setString(1, nombreEnemigo);
+                pstmt.setInt(2, edadEnemigo);
+                pstmt.setString(3, genero);
+                pstmt.setInt(4, claseEnemigo);
+                pstmt.setInt(5, experienciaEnemigo);
+                pstmt.setString(6, objeto);
 
                 pstmt.executeUpdate();
 
