@@ -14,7 +14,7 @@ public class DaoHechizo {
                 throw new RuntimeException(e);
             }
 
-            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String url = "jdbc:mysql://localhost:3306/mydb";
             ArrayList<Hechizos> listaHechizo = new ArrayList<>();
 
             String sql = "select * from magia";
@@ -48,7 +48,7 @@ public class DaoHechizo {
                 throw new RuntimeException(e);
             }
 
-            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String url = "jdbc:mysql://localhost:3306/mydb";
             String sql = "DELETE FROM objeto WHERE idMagia = ?";
 
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
@@ -70,7 +70,7 @@ public class DaoHechizo {
                 throw new RuntimeException(e);
             }
             /*cambiar los insert into por updates */
-            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String url = "jdbc:mysql://localhost:3306/mydb";
             String sql =
                     "UPDATE magia SET idMagia=?,hexaHechizoId=?,nombreHechizo=?,potenciaHechizo=?, precisionHechizo=?,Elemento_idElemento=?,ProbabilidadObjeto_idProbabilidadObjeto=?, exclusividad=? WHERE idHeroe=?";
 
@@ -98,7 +98,7 @@ public class DaoHechizo {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/grupored";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         String sql = "INSERT INTO heroe (nombreHechizo,Elemento_idElemento,potenciaHechizo, precisionHechizo, hexaHechizoId,ProbabilidadObjeto_idProbabilidadObjeto,exclusividad) VALUES (?,?,?,?,?,?,?)";
 
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
