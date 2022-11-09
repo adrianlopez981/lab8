@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "HeroeServlet", value = "/HeroeServlet")
+@WebServlet(name = "HeroeServlet", value = {"/HeroeServlet","/Heroes"})
 public class HeroeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -78,21 +78,23 @@ public class HeroeServlet extends HttpServlet {
                 int ataqueHeroe = Integer.parseInt(ataqueStr);
                 String idparejaStr = request.getParameter("pareja_idpareja");
                 int idpareja = Integer.parseInt(idparejaStr);
+                try{
+                    Heroe heroe = new Heroe();
+                    heroe.setHeroeId(idheroe);
+                    heroe.setNombre(nombreHeroe);
+                    heroe.setEdad(edadHeroe);
+                    heroe.setIdGenero(idGenero);
+                    heroe.setClaseHeroeId(claseHeroe);
+                    heroe.setNivelHeroeId(NivelHeroe);
+                    heroe.setAtaqueHeroe(ataqueHeroe);
+                    heroe.setIdPareja(idpareja);
+                    DaoHeroe.guardar(heroe);
+                    response.sendRedirect(request.getContextPath() + "/HeroeServlet");
+                }
+                catch (NumberFormatException e){
+                    response.senRedirect(request.getContextPath() + "/HeroeServlet?id=newHero");
+                }
 
-                Heroe heroe = new Heroe();
-                heroe.setHeroeId(idheroe);
-                heroe.setNombre(nombreHeroe);
-                heroe.setEdad(edadHeroe);
-                heroe.setIdGenero(idGenero);
-                heroe.setClaseHeroeId(claseHeroe);
-                heroe.setNivelHeroeId(NivelHeroe);
-                heroe.setAtaqueHeroe(ataqueHeroe);
-                heroe.setIdPareja(idpareja);
-                DaoHeroe.guardar(heroe);
-
-
-
-                response.sendRedirect(request.getContextPath() + "/HeroeServlet");
                 break;
             case "actualizar":
 
@@ -120,7 +122,7 @@ public class HeroeServlet extends HttpServlet {
 
                     response.sendRedirect(request.getContextPath() + "/HeroeServlet");
                 } catch (NumberFormatException e) {
-                    response.sendRedirect(request.getContextPath() + "/HeroeServlet?action=editar&id=");
+                    response.sendRedirect(request.getContextPath() + "/HeroeServlet?action=editar&id="+idheroeStr2);
                 }
                 break;
         }
