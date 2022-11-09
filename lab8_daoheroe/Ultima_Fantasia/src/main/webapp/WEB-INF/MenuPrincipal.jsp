@@ -102,10 +102,10 @@
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="<%=request.getContextPath()%>/MenuPrincipal" class="nav-link px-2"><b style="color:#CDEFB4">Menú Principal</b></a></li>
-        <li><a href="<%=request.getContextPath()%>/MenuHeroes" class="nav-link px-2 text-white">Menú Héroes</a></li>
-        <li><a href="<%=request.getContextPath()%>/MenuEnemigos" class="nav-link px-2 text-white">Menú Enemigos</a></li>
-        <li><a href="<%=request.getContextPath()%>/MenuHechizos" class="nav-link px-2 text-white">Menú Hechizos</a></li>
-        <li><a href="<%=request.getContextPath()%>/CatalogoObjetos" class="nav-link px-2 text-white">Catálogo Objetos</a></li>
+        <li><a href="<%=request.getContextPath()%>/HeroeServlet" class="nav-link px-2 text-white">Menú Héroes</a></li>
+        <li><a href="<%=request.getContextPath()%>/EnemigoServlet" class="nav-link px-2 text-white">Menú Enemigos</a></li>
+        <li><a href="<%=request.getContextPath()%>/HechizoServlet" class="nav-link px-2 text-white">Menú Hechizos</a></li>
+        <li><a href="<%=request.getContextPath()%>/catalogoServlet" class="nav-link px-2 text-white">Catálogo Objetos</a></li>
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -146,7 +146,7 @@
         <h2 class="fw-normal" style="font-family: 'Times New Roman', Times, serif;color:#FEF7B3">Héroes</h2>
         <p style="font-family: 'Times New Roman', Times, serif;color:#FEF7B3">Héroes dispuestos arriesgar su vida con el fin de detener los planes del malvado Forond.</p>
         <div id="separar">
-          <a href="<%=request.getContextPath()%>/MenuHeroes"><button class="boton4" type="button" class="btn btn-primary btn-lg">
+          <a href="<%=request.getContextPath()%>/HeroeServlet"><button class="boton4" type="button" class="btn btn-primary btn-lg">
             <h5 style="font-weight: 200;font-style: normal; color:#FFFFFF" class="custom-font" data-lorem="1s">Ir a Menú »
             </h5>
           </button></a>
@@ -159,7 +159,7 @@
         <h2 class="fw-normal" style="font-family: 'Times New Roman', Times, serif;color:#DFEDFA">Enemigos</h2>
         <p style="font-family: 'Times New Roman', Times, serif;color:#DFEDFA">Seres malignos dispuestos a destruir a los héroes. Está liderado por el malvado Forond.</p>
         <div id="separar">
-          <a href="<%=request.getContextPath()%>/MenuEnemigos"><button class="boton4" type="button" class="btn btn-primary btn-lg">
+          <a href="<%=request.getContextPath()%>/EnemigoServlet"><button class="boton4" type="button" class="btn btn-primary btn-lg">
             <h5 style="font-weight: 200;font-style: normal; color:#FFFFFF" class="custom-font" data-lorem="1s">Ir a Menú »
             </h5>
           </button></a>
@@ -171,7 +171,7 @@
         <h2 class="fw-normal" style="font-family: 'Times New Roman', Times, serif;color:#CEFFBF">Hechizos</h2>
         <p style="font-family: 'Times New Roman', Times, serif;color:#CEFFBF">Poderosas armas elementales que se usa para poder liberar la guerra en este mundo tan hostil.</p>
         <div id="separar">
-          <a href="<%=request.getContextPath()%>/MenuHechizos"><button class="boton4" type="button" class="btn btn-primary btn-lg">
+          <a href="<%=request.getContextPath()%>/HechizoServlet"><button class="boton4" type="button" class="btn btn-primary btn-lg">
             <h5 style="font-weight: 200;font-style: normal; color:#FFFFFF" class="custom-font" data-lorem="1s">Ir a Menú »
             </h5>
           </button></a>
@@ -184,7 +184,7 @@
         <h2 class="fw-normal" style="font-family: 'Times New Roman', Times, serif;color:#D1EDE8">Catálogo</h2>
         <p style="font-family: 'Times New Roman', Times, serif;color:#D1EDE8">Catálogo de objetos a usar, es una vista que muestra toda la lista de objetos presentes en el videojuego.</p>
         <div id="separar">
-          <a href="<%=request.getContextPath()%>/CatalogoObjetos"><button class="boton4" type="button" class="btn btn-primary btn-lg">
+          <a href="<%=request.getContextPath()%>/catalogoServlet"><button class="boton4" type="button" class="btn btn-primary btn-lg">
             <h5 style="font-weight: 200;font-style: normal; color:#FFFFFF" class="custom-font" data-lorem="1s">Ir a Menú »
             </h5>
           </button></a>
@@ -209,6 +209,15 @@
       @import url('https://fonts.cdnfonts.com/css/american-typewriter');
     </style>
 
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/popup.js"></script>
+    <script src="assets/js/custom.js"></script>
 </body>
 
 </html>
