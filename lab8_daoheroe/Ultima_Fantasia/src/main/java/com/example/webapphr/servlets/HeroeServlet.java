@@ -5,8 +5,6 @@ import com.example.webapphr.model.daos.DaoHeroe;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import com.example.webapphr.model.beans.CatalogoObjetos;
-import com.example.webapphr.model.daos.DaoCatalogoObjetos;
 import java.io.IOException;
 import java.util.ArrayList;
 

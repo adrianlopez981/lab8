@@ -62,7 +62,7 @@ public class DaoHechizo {
             }
         }
 
-        public void actualizar (String nombreHechizo,int hechizoId, String elementoHechizo , int potenciaHechizo, int precisionHechizo,
+        public void actualizar(String nombreHechizo,int hechizoId, String elementoHechizo , int potenciaHechizo, int precisionHechizo,
                                 String hechizoBase, int nivelAprendizajeHechizo){
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
@@ -91,7 +91,7 @@ public class DaoHechizo {
                 throw new RuntimeException(e);
             }
         }
-    public static void guardarHechizo(Hechizos hechizos) {
+        public void guardarHechizo(Hechizos hechizos) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -118,4 +118,5 @@ public class DaoHechizo {
             throw new RuntimeException(e);
         }
     }
+
 }
