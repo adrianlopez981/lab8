@@ -14,7 +14,7 @@ public class DaoEnemigo {
                 throw new RuntimeException(e);
             }
 
-            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String url = "jdbc:mysql://localhost:3306/mydb";
             ArrayList<Enemigo> lista = new ArrayList<>();
 
             String sql = "select  e.nombreEnemigo, c.Clasificacion, ListaAtaquesEnemigo_idListaAtaquesEnemigo, ExperienciaXDerrotaEnemigo_idExperienciaXDerrotaEnemigo," +
@@ -52,7 +52,7 @@ public class DaoEnemigo {
 
             String user = "root";
             String pasw = "root";
-            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String url = "jdbc:mysql://localhost:3306/mydb";
             String sql = "update enemigo set nombreEnemigo = ?, c.idClasificacionAtaqueEnemigo = ?, c.clasificacion = ?, ExperienciaXDerrotaEnemigo_idExperienciaXDerrotaEnemigo = ?, o.idObjeto = ?, Genero_idGenero = ? where idEnemigo = ?" +
                     " from clasificacionataqueenemigo c, objeto o ";
 
@@ -84,7 +84,7 @@ public class DaoEnemigo {
                 throw new RuntimeException(e);
             }
 
-            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String url = "jdbc:mysql://localhost:3306/mydb";
             String sql = "DELETE FROM enemigo WHERE idEnemigo = ?";
 
             try (Connection connection = DriverManager.getConnection(url, "root", "root");
@@ -105,7 +105,7 @@ public class DaoEnemigo {
                 throw new RuntimeException(e);
             }
 
-            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String url = "jdbc:mysql://localhost:3306/mydb";
 
             Enemigo enemigo = null;
 
@@ -143,7 +143,7 @@ public class DaoEnemigo {
                 throw new RuntimeException(e);
             }
 
-            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String url = "jdbc:mysql://localhost:3306/mydb";
             String sql = "insert into enemigo (nombreEnemigo,c.idClaseHeroe,ListaAtaquesEnemigo_idListaAtaquesEnemigo,ExperienciaXDerrotaEnemigo_idExperienciaXDerrotaEnemigo,o.nombreObjeto,p.numeroProbabilidad, g.nombre ) VALUES (?,?,?,?,?,?,?)"
                     + " from clasificacionataqueenemigo c, objeto o, p.probabilidadobjeto ,g.genero";
 
@@ -174,7 +174,7 @@ public class DaoEnemigo {
                 throw new RuntimeException(e);
             }
 
-            String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+            String url = "jdbc:mysql://localhost:3306/mydb";
             String sql = "update enemigo set nombreEnemigo, ListaAtaquesEnemigo_idListaAtaquesEnemigo, Genero_idGenero,ExperienciaXDerrotaEnemigo_idExperienciaXDerrotaEnemigo,o.nombreObjeto,p.numeroProbabilidad, g.nombre, c.idClaseHeroe "
                     + "from clasificacionataqueenemigo c, objeto o, p.probabilidadobjeto ,g.genero";
 
