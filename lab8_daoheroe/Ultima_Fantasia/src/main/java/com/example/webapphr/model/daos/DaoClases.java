@@ -13,7 +13,7 @@ public class DaoClases {
             throw new RuntimeException(e);
         }
 
-        String url = "jdbc:mysql://localhost:3306/bbdd_lab8";
+        String url = "jdbc:mysql://localhost:3306/mydb";
         ArrayList<Clases> listaClasess = new ArrayList<>();
 
         String sql = "SELECT * FROM objeto ORDER BY nombreObjeto ASC";
