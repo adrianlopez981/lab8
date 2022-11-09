@@ -151,7 +151,63 @@
             </tr>
             </thead>
             <tbody class="table-group-divider">
-            <%  %>
+            <% int i = 1;
+            for (Heroe heroe : listaHeroes) {%>
+            <tr>
+              <td scope="row"> <%=heroe.getHeroeId%>> </td>
+              <td> <%=heroe.getNombre()%></td>
+              <% if(heroe.getGenero().equals("M")) {%>
+              <td>Masculino</td>
+              <%} else if (heroe.getGenero().equals("F")){%>
+              <td>Femenino</td>
+              <%} else{ %>
+              <td>Otro</td>
+              <%}%>
+              <td><%=heroe.getClase()%></td>
+              <td><%=heroe.getNivelHeroeId()%></td>
+              <td><%=heroe.getAtaqueHeroe()%></td>
+              <% if(heroe.getParejaHeroe().getIdPareja()!=null) {%>
+              <td><%=heroe.getPareja().getIdPareja()%></td>
+              <%} else {%>
+              <td>No tiene</td>
+              <%}%>
+              <td class="text-center"><%=heroe.ExperienciaHeroe()%></td>
+              <td>
+
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                  <a href="<%=request.getContextPath()%>/HeroeServlet?accion=editar&id=<%= heroe.getHeroeId()%>" class="btn btn-success" >Editar</a>
+                  <i class="fa-solid fa-pen"></i>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Eliminar
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#06380A">ELIMINAR JUGADOR</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          ¿Estás seguro de eliminar?
+                        </div>
+                        <div class="modal-footer">
+                          <a href="<%=request.getContextPath()%>/HeroeServlet"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
+                          <a href="<%=request.getContextPath()%>/HeroeServlet?accion=borrar&id=<%= heroe.getHeroeId()%>"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                          <i class="fa-solid fa-pen"></i></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a href="<%=request.getContextPath()%>/Ver" class="btn btn-success .5;">Ver</a>
+                  <i class="fa-solid fa-pen"></i></i>
+                </div>
+              </td>
+
+            </tr>
+
             <tr>
               <th scope="row">1</th>
               <td>Mark</td>
@@ -186,128 +242,15 @@
                       </div>
                     </div>
                   </div>
+
                   <a href="<%=request.getContextPath()%>/Ver" class="btn btn-success .5;">Ver</a>
                 </div>
-
               </td>
             </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Masculino</td>
-              <td>Clase tipo</td>
-              <td>8</td>
-              <td>159</td>
-              <td>Rosa</td>
-              <td>1000</td>
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                  <a href="<%=request.getContextPath()%>/Editar" class="btn btn-success" >Editar</a>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Eliminar
-                  </button>
+            <% i ++;
+            }
+            %>
 
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#06380A">ELIMINAR JUGADOR</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          ¿Estás seguro de eliminar?
-                        </div>
-                        <div class="modal-footer">
-                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-primary">Eliminar</button></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="<%=request.getContextPath()%>/Ver" class="btn btn-success .5;">Ver</a>
-                </div>
-
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Masculino</td>
-              <td>Clase tipo</td>
-              <td>8</td>
-              <td>159</td>
-              <td>Rosa</td>
-              <td>1000</td>
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                  <a href="<%=request.getContextPath()%>/Editar" class="btn btn-success" >Editar</a>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Eliminar
-                  </button>
-
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#06380A">ELIMINAR JUGADOR</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          ¿Estás seguro de eliminar?
-                        </div>
-                        <div class="modal-footer">
-                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-primary">Eliminar</button></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="<%=request.getContextPath()%>/Ver" class="btn btn-success .5;">Ver</a>
-                </div>
-
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Masculino</td>
-              <td>Clase tipo</td>
-              <td>8</td>
-              <td>159</td>
-              <td>Rosa</td>
-              <td>1000</td>
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                  <a href="<%=request.getContextPath()%>/Editar" class="btn btn-success" >Editar</a>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Eliminar
-                  </button>
-
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#06380A">ELIMINAR JUGADOR</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          ¿Estás seguro de eliminar?
-                        </div>
-                        <div class="modal-footer">
-                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button></a>
-                          <a href="<%=request.getContextPath()%>/MenuHeroes"><button type="button" class="btn btn-primary">Eliminar</button></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="<%=request.getContextPath()%>/Ver" class="btn btn-success .5;">Ver</a>
-                </div>
-
-              </td>
-            </tr>
             </tbody>
           </table>
 
